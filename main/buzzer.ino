@@ -127,7 +127,8 @@ int divider = 0, noteDuration = 0;
 
 
 void StartEnconderSond(){
-  pinMode(speakerPin , OUTPUT);
+  pinMode(MINLED, OUTPUT);// define LED como saida
+  pinMode(MAXLED, OUTPUT);// define LED como saida
 }
 
 

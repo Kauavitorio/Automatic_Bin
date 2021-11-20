@@ -12,6 +12,7 @@
 // defines variables
 extern long duration; // variable for the duration of sound wave travel
 extern int distance; // variable for the distance measurement
+extern bool estadoled;
 
 void StartSensorUltra(){
   pinMode(trigPin, OUTPUT); // Sets the trigPin as an OUTPUT
@@ -31,8 +32,11 @@ void registerDistance(){
   // Calculating the distance
   distance = duration * 0.034 / 2; // Speed of sound wave divided by 2 (go and back)
   // Displays the distance on the Serial Monitor
-  Serial.print("Distance: ");
-  Serial.print(distance);
-  Serial.println(" cm");  
+
+  if(estadoled == false){
+    Serial.print("Distance: ");
+    Serial.print(distance);
+    Serial.println(" cm");  
+  }
    
 }
