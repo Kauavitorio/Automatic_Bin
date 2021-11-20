@@ -55,7 +55,7 @@ void setup(){
     estadoled = EEPROM.read("wrokingStatus");
   
   DisplayStatus(0);
-  //onSong();
+  onSong();
   Serial.println("-- System On -- "); // print some text in Serial Monitor
 }
 
