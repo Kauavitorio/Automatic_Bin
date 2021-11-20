@@ -2,7 +2,7 @@
 *
 *    Copyright (c) 2021 Kauã Vitório
 *    Responsible developer: https://github.com/Kauavitorio
-*    Squash Company Projects            
+*    Kauã Vitório Projects            
 *
 *******************************************************************************/
 
