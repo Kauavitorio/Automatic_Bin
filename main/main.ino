@@ -60,6 +60,7 @@ void setup(){
   pinMode(pushbutton, INPUT_PULLUP); // define o pino do botao como entrada
   pinMode(workingLed, OUTPUT);
     estadoled = EEPROM.read("wrokingStatus");
+    idleControl = EEPROM.read("idleControl");
   
   DisplayStatus(0);
   //onSong();
@@ -75,6 +76,7 @@ void loop() {
     if(distance <= minDistance){
         lastDistance = 0;
         idleControl = false;
+        EEPROM.write("idleControl", idleControl);
        Serial.println("----- Minimal Distance -----");
        DisplayStatus(2);
        for(pos; pos <= 90; pos++)
@@ -85,6 +87,7 @@ void loop() {
        s.write(90);
     }else{
         idleControl = true;
+        EEPROM.write("idleControl", idleControl);
        if(distance >= minDistance + 1 && distance <= minDistance + 20){
          DisplayStatus(1);
          for(pos; pos >= 0; pos--)
@@ -129,6 +132,7 @@ void loop() {
       Serial.println(!estadoled);
      
       EEPROM.write("wrokingStatus", estadoled);
+      EEPROM.write("idleControl", idleControl);
       pos = 0;
       s.write(pos);
   }
