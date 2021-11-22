@@ -104,7 +104,7 @@ void song();
 extern int speakerPin;
 
 // change this to make the song slower or faster
-int tempo = 140;
+int tempo = 340;
 int melody[] = {
 
 
@@ -127,8 +127,8 @@ int divider = 0, noteDuration = 0;
 
 
 void StartEnconderSond(){
-  pinMode(MINLED, OUTPUT);// define LED como saida
-  pinMode(MAXLED, OUTPUT);// define LED como saida
+  pinMode(MINLED, OUTPUT);
+  pinMode(MAXLED, OUTPUT);
 }
 
 

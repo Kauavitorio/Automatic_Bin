@@ -17,6 +17,7 @@ extern int MAXLED;
 extern int MINLED;
 extern int baseDELAY;
 extern int workingLed;
+extern bool estadoled;
 
 void StartEnconderLevel(){
   pinMode(speakerPin , OUTPUT);
@@ -29,21 +30,34 @@ void checkNewLevel(){
     }
   
      sensorLevel = analogRead(potenciometro);
-     digitalWrite(MAXLED, LOW); 
-     digitalWrite(MINLED, LOW);
+    lightSystem(0);
     if(sensorLevel >= 0 && sensorLevel <= 150){ 
-        digitalWrite(MINLED, HIGH); 
-        minDistance = 25;
+           lightSystem(1);
+           minDistance = 25;
     }else if(sensorLevel >= 800 && sensorLevel <= 2000){
-        digitalWrite(MAXLED, HIGH); 
-        minDistance = 160;
+           lightSystem(2);
+           minDistance = 160;
     }else{
         if(sensorLevel >= 160 && sensorLevel <= 600){
            minDistance = sensorLevel / 6;
         }else if(sensorLevel >= 601 && sensorLevel <= 799){
-          digitalWrite(MINLED, HIGH); 
-          digitalWrite(MAXLED, HIGH); 
+           lightSystem(3);
            minDistance = sensorLevel / 5;
         }
     }
+}
+
+void lightSystem(int where){
+          digitalWrite(MINLED, LOW); 
+          digitalWrite(MAXLED, LOW); 
+  if(estadoled == false){
+    if(where == 1)
+          digitalWrite(MINLED, HIGH); 
+      else if(where == 2)
+          digitalWrite(MAXLED, HIGH); 
+      else if(where == 3){
+            digitalWrite(MINLED, HIGH); 
+            digitalWrite(MAXLED, HIGH); 
+      }
+  }
 }

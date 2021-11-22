@@ -30,6 +30,7 @@ long idleTimer = 0;
 long idleLimit = 300000;
 int lastDistance = 0;
 
+
 Servo s; // Variável Servo
 int pos; // Posição Servo
 
@@ -46,16 +47,22 @@ extern void checkNewLevel();
 extern void onSong();
 extern void beep();
 
-void setup(){
-  s.attach(SERVO);
-  s.write(0); // Inicia motor posição zero
+void setup(){  
   Serial.begin(9600); // // Serial Communication is starting with 9600 of baudrate speed
-  Serial.println("Ultrasonic Sensor HC-SR04"); // print some text in Serial Monitor
-  Serial.println("Starting up system -- "); // print some text in Serial Monitor
+  
+  Serial.println("------ Automatic Bin");
+  Serial.println("------ By Kaua Vitorio");
+  Serial.println("------ Github: https://github.com/Kauavitorio");
+  Serial.println("------ Ultrasonic Sensor HC-SR04");
+  Serial.println("------ Starting up system ------");
+  
   StartEnconderSond();
   StartSensorUltra();
   StartEnconderDisplay();
   StartEnconderLevel();
+  
+  s.attach(SERVO);
+  s.write(0); // Start motor zero position
   
   pinMode(pushbutton, INPUT_PULLUP); // define o pino do botao como entrada
   pinMode(workingLed, OUTPUT);
@@ -63,8 +70,8 @@ void setup(){
     idleControl = EEPROM.read("idleControl");
   
   DisplayStatus(0);
-  //onSong();
-  Serial.println("-- System On -- "); // print some text in Serial Monitor
+  onSong();
+  Serial.println("------ System On ------"); // print some text in Serial Monitor
 }
 
 void loop() {
